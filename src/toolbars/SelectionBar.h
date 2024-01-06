@@ -42,9 +42,9 @@ class AUDACITY_DLL_API SelectionBar final : public ToolBar {
       StartEnd,
       StartLength,
       LengthEnd,
-      LengthCenter 
+      LengthCenter
    };
-   
+
    static Identifier ID();
 
    SelectionBar( AudacityProject &project );
@@ -70,7 +70,7 @@ class AUDACITY_DLL_API SelectionBar final : public ToolBar {
 
  private:
    AButton* MakeSetupButton();
-   
+
    void AddTitle( const TranslatableString & Title,
       wxSizer * pSizer );
    void AddTime( int id, wxSizer * pSizer );

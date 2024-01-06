@@ -71,6 +71,8 @@ list( APPEND SOURCES
       AudacityFileConfig.h
       AudacityHeaders.cpp
       AudacityHeaders.h
+      AudacityPipe.cpp
+      AudacityPipe.h
       AudioPasteDialog.cpp
       AudioPasteDialog.h
       AutoRecoveryDialog.cpp

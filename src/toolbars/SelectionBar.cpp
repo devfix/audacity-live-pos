@@ -25,8 +25,10 @@ selection range.
 #include "SelectionBar.h"
 
 #include <algorithm>
+#include <sstream>
 
 #include "ToolManager.h"
+#include "../AudacityPipe.h"
 
 // For compilers that support precompilation, includes "wx/wx.h".
 #include <wx/wxprec.h>
@@ -368,7 +370,7 @@ void SelectionBar::ModifySelection(int driver, bool done)
    double end = mEnd;
    double center = mCenter;
    double length = mLength;
-   
+
    if (driver == 0)
    {
       if (
@@ -420,7 +422,7 @@ void SelectionBar::ModifySelection(int driver, bool done)
          // Length is set by user
          if (driver == 0)
             end -= start;
-         
+
          start = 0;
       }
       break;
@@ -438,7 +440,7 @@ void SelectionBar::ModifySelection(int driver, bool done)
 
          start = 0;
       }
-      
+
       end = center + length / 2.0;
       break;
    default:
@@ -560,6 +562,12 @@ void SelectionBar::SetTimes(double start, double end)
    if ( start != mStart || end != mEnd
       || mLastSelectionMode != mSelectionMode
    ) {
+      // coreedit
+      std::stringstream ss;
+      ss << "SetSelection\n" << start << ' ' << end << '\n';
+      auto cmd = ss.str();
+      AudacityPipe::GetInstance().write(cmd);
+
       mStart = start;
       mEnd = end;
       mLength = end-start;
